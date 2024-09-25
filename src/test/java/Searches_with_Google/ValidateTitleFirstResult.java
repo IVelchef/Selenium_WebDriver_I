@@ -16,17 +16,19 @@ public class ValidateTitleFirstResult {
 
 
 
-    // Chrome Version 129.0.6668.71 (Official Build) (arm64).
+    // Chrome Version 129.0.6668.71 (Official Build) (arm64)
 
     public static final String SEARCH_INPUT = "Telerik Academy Alpha";
     public static final String EXPECTED_RESULT = "IT Career Start in 6 Months - Telerik Academy Alpha";
+    public static final String ERROR_MESSAGE = "The title of the first result did not match. This issue has already been reported to Telerik Academy";
+    public static final String GOOGLE_URL = "https://www.google.com";
 
     @Test
     public void validateFirstTitle (){
 
     WebDriver driver = new ChromeDriver();
 
-    driver.get("https://www.google.com");
+    driver.get(GOOGLE_URL);
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         driver.manage().window().maximize();
@@ -42,7 +44,7 @@ public class ValidateTitleFirstResult {
     List<WebElement> resultLinks = driver.findElements(By.xpath("//h3"));
         var firstResult = resultLinks.get(0);
 
-    Assertions.assertEquals(EXPECTED_RESULT, firstResult.getText(), "This result discrepancy has been reported to Telerik Academy");
+    Assertions.assertEquals(EXPECTED_RESULT, firstResult.getText(), ERROR_MESSAGE);
 
 
        driver.quit();
