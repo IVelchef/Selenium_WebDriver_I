@@ -10,6 +10,7 @@ Search for 'Telerik Academy Alpha'
 Validate the title of the first result as 'IT Career Start in 6 Months - Telerik Academy Alpha'
 
 
+
 2
 Automate a test case that searches with Google:
 
