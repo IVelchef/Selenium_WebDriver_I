@@ -17,7 +17,7 @@ import static configuration.testConstants.*;
 public class ValidateTitleFirstResult {
 
 
-    // Chrome Version 129.0.6668.71 (Official Build) (arm64)
+    // Firefox version: 130.0.1 (64-bit)
 
 
     @Test
