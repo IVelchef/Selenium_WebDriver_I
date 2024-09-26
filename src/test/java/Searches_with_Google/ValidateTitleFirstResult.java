@@ -15,7 +15,6 @@ import java.util.List;
 public class ValidateTitleFirstResult {
 
 
-
     // Chrome Version 129.0.6668.71 (Official Build) (arm64)
 
     public static final String SEARCH_INPUT = "Telerik Academy Alpha";
@@ -24,30 +23,31 @@ public class ValidateTitleFirstResult {
     public static final String GOOGLE_URL = "https://www.google.com";
 
     @Test
-    public void validateFirstTitle (){
+    public void validateFirstTitle() {
 
-    WebDriver driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-    driver.get(GOOGLE_URL);
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        try {
+            driver.get(GOOGLE_URL);
+            driver.manage().window().maximize();
 
-        driver.manage().window().maximize();
+            WebElement cookieButton = driver.findElement(By.id("L2AGLb"));
+            cookieButton.click();
 
-    WebElement cookieButton = driver.findElement(By.id("L2AGLb"));
-    cookieButton.click();
+            WebElement searchBox = driver.findElement(By.id("APjFqb"));
+            searchBox.sendKeys(SEARCH_INPUT + Keys.ENTER);
 
-    WebElement searchBox = driver.findElement(By.id("APjFqb"));
-    searchBox.sendKeys(SEARCH_INPUT + Keys.ENTER);
+            WebElement searchResultsBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search")));
 
-    WebElement searchResultsBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search")));
+            List<WebElement> resultLinks = driver.findElements(By.xpath("//h3"));
+            var firstResult = resultLinks.get(0);
 
-    List<WebElement> resultLinks = driver.findElements(By.xpath("//h3"));
-        var firstResult = resultLinks.get(0);
+            Assertions.assertEquals(EXPECTED_RESULT, firstResult.getText(), ERROR_MESSAGE);
 
-    Assertions.assertEquals(EXPECTED_RESULT, firstResult.getText(), ERROR_MESSAGE);
+        } finally {
+            driver.quit();
 
-
-       driver.quit();
-
+        }
     }
 }

@@ -15,7 +15,6 @@ import java.util.List;
 public class ValidateTitleFirstResult {
 
 
-
     // Chrome Version 129.0.6668.71 (Official Build) (arm64)
 
     public static final String SEARCH_INPUT = "Telerik Academy Alpha";
@@ -24,31 +23,35 @@ public class ValidateTitleFirstResult {
     public static final String BING_URL = "https://www.bing.com";
 
     @Test
-public void validateFirstResult(){
+    public void validateFirstResult() {
 
-    WebDriver driver = new ChromeDriver();
-
-    driver.get(BING_URL);
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
-    driver.manage().window().maximize();
+        WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 
-    WebElement acceptButtonIsDisplayed = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("bnp_btn_accept")));
-    WebElement acceptButton = driver.findElement(By.id("bnp_btn_accept"));
-    acceptButton.click();
+        try {
 
-    WebElement searchBox = driver.findElement(By.id("sb_form_q"));
-    searchBox.sendKeys(SEARCH_INPUT + Keys.ENTER);
-
-    WebElement searchResultsBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("b_tween_searchResults")));
-
-    List<WebElement> resultLinks = driver.findElements(By.xpath("//h2/a"));
-        var firstResult = resultLinks.get(0);
-
-     Assertions.assertEquals(EXPECTED_RESULT, firstResult.getText(), ERROR_MESSAGE);
+            driver.get(BING_URL);
+            driver.manage().window().maximize();
 
 
-    driver.close();
-}
+            WebElement acceptButtonIsDisplayed = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("bnp_btn_accept")));
+            WebElement acceptButton = driver.findElement(By.id("bnp_btn_accept"));
+            acceptButton.click();
+
+            WebElement searchBox = driver.findElement(By.id("sb_form_q"));
+            searchBox.sendKeys(SEARCH_INPUT + Keys.ENTER);
+
+            WebElement searchResultsBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("b_tween_searchResults")));
+
+            List<WebElement> resultLinks = driver.findElements(By.xpath("//h2/a"));
+            var firstResult = resultLinks.get(0);
+
+            Assertions.assertEquals(EXPECTED_RESULT, firstResult.getText(), ERROR_MESSAGE);
+
+        } finally {
+            driver.close();
+
+        }
+    }
 }
