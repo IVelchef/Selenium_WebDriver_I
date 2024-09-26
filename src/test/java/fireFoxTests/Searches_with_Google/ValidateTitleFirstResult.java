@@ -1,31 +1,29 @@
-package Searches_with_Google;
+package fireFoxTests.Searches_with_Google;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
 
+import static configuration.testConstants.*;
+
 public class ValidateTitleFirstResult {
 
 
     // Chrome Version 129.0.6668.71 (Official Build) (arm64)
 
-    public static final String SEARCH_INPUT = "Telerik Academy Alpha";
-    public static final String EXPECTED_RESULT = "IT Career Start in 6 Months - Telerik Academy Alpha";
-    public static final String ERROR_MESSAGE = "The title of the first result did not match. This issue has already been reported to Telerik Academy";
-    public static final String GOOGLE_URL = "https://www.google.com";
 
     @Test
     public void validateFirstTitle() {
 
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = new FirefoxDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         try {
