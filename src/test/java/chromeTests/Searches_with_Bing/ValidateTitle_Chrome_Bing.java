@@ -14,14 +14,14 @@ import java.util.List;
 
 import static configuration.testConstants.*;
 
-public class ValidateTitleFirstResult {
+public class ValidateTitle_Chrome_Bing {
 
 
     // Chrome Version 129.0.6668.71 (Official Build) (arm64)
 
 
     @Test
-    public void validateFirstResult() {
+    public void validateTitleFirstResult() {
 
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));

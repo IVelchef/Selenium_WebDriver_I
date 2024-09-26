@@ -14,14 +14,14 @@ import java.util.List;
 
 import static configuration.testConstants.*;
 
-public class ValidateTitleFirstResult {
+public class ValidateTitle_Firefox_Google {
 
 
     // Firefox version: 130.0.1 (64-bit)
 
 
     @Test
-    public void validateFirstTitle() {
+    public void validateTitleFirstResult() {
 
         WebDriver driver = new FirefoxDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
